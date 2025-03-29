@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service MoneyRetrieval {
+  rpc RetrieveMoney (MoneyRetrievalRequest) returns (MoneyRetrievalResponse) {}
+}
+
+message MoneyRetrievalRequest {
+  double amount = 1;
+}
+
+message MoneyRetrievalResponse {
+  bool success = 1;
+  double retrieved_amount = 2;
+}

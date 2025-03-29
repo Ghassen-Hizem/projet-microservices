@@ -1,0 +1,14 @@
+venv/
+
+provider/venv
+
+load_request_service_rest/venv
+
+bank-service/node_modules
+
+package-lock.json
+
+.metadata
+
+__pycache__
+
