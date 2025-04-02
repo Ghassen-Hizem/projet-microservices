@@ -1,0 +1,13 @@
+{
+    "check_number" : 1,
+    "bank_name" : "sg",
+    "bank_address" :"test",
+    "payer_name" : "ghassen",
+    "payee_name" : "test",
+    "amount" : 20000,
+    "issue_date" : "test",
+    "memo" : "test",
+    "routing_number" : 1,
+    "account_number": 1
+
+}

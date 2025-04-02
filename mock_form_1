@@ -1,0 +1,9 @@
+{
+    "id" : "testID",
+    "nom" : "testNom",
+    "prenom" :"prenomTest",
+    "loan_type" : "personal",
+    "amount" : 20000,
+    "description" : "testDescription"
+
+}

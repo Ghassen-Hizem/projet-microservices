@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="CustomerFinancialProfileService" scope="application">
+    <description>
+        SOAP service for retrieving customer financial profile activity for risk assessment
+    </description>
+    <messageReceivers>
+        <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"
+                         class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+        <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out"
+                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </messageReceivers>
+    <parameter name="ServiceClass">root.finrisk.service.CustomerFinancialProfileService</parameter>
+    <operation name="getCustomerFinancialProfile">
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </operation>
+</service>
