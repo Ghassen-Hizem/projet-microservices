@@ -1,1 +1,9 @@
-flask
+Flask
+flask-restx
+grpcio
+grpcio-tools
+zeep
+requests
+xmltodict
+protobuf
+Werkzeug

@@ -10,14 +10,15 @@ const db = new sqlite3.Database(':memory:');
 db.serialize(() => {
   db.run(`
     CREATE TABLE customers (
-      id INTEGER PRIMARY KEY,
+      id TEXT PRIMARY KEY,
       balance REAL
     )
   `);
 
   // Insert some sample data
-  db.run("INSERT INTO customers (id, balance) VALUES (1, 100)");
-  db.run("INSERT INTO customers (id, balance) VALUES (2, 200)");
+  db.run("INSERT INTO customers (id, balance) VALUES ('C1001', 100)");
+  db.run("INSERT INTO customers (id, balance) VALUES ('C1002', 200)");
+  db.run("INSERT INTO customers (id, balance) VALUES ('C1003', 200)");
 });
 
 // Define GraphQL schema
@@ -29,11 +30,11 @@ const schema = buildSchema(`
   }
 
   type Mutation {
-    addAmountToCustomer(id: Int!, amount: Float!): Customer
+    addAmountToCustomer(id: String!, amount: Float!): Customer
   }
 
   type Customer {
-    id: Int
+    id: String
     balance: Float
   }
 `);
@@ -95,6 +96,6 @@ app.use('/customer/id', graphqlHTTP({
 
 // Start the server
 const PORT = 4000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

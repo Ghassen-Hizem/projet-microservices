@@ -32,8 +32,8 @@ json_data_2 = {
 }
 
 json_data_3 = {
-  "id": 1,
-  "amount": 1000
+  "id": "C1003",
+  "amount": 20000
 }
 
 
@@ -101,34 +101,39 @@ if __name__ == "__main__":
     print(f"Sending POST request to: {API_BASE_URL_2}")
     print(f"Request data:\n{json.dumps(json_data_2, indent=2)}")
     
-    result = make_post_request(API_BASE_URL_2, json_data_2, headers)
+    result1 = make_post_request(API_BASE_URL_2, json_data_2, headers)
     
     print("\nResponse:")
-    print(json.dumps(result, indent=2))
+    print(json.dumps(result1, indent=2))
+
+    if result1:
+
+        print(f"Sending POST request to: {API_BASE_URL_1}")
+        print(f"Request data:\n{json.dumps(json_data_1, indent=2)}")
+    
+        result2 = make_post_request(API_BASE_URL_1, json_data_1, headers)
+    
+        print("\nResponse:")
+        print(json.dumps(result2, indent=2))
+
+        if result2:
+
+            print(f"Sending POST request to: {API_BASE_URL_3}")
+            print(f"Request data:\n{json.dumps(json_data_3, indent=2)}")
+    
+            result3 = make_post_request(API_BASE_URL_3, json_data_3, headers)
+    
+            print("\nResponse:")
+            print(json.dumps(result3, indent=2))
+
+            if result3:
 
 
-    print(f"Sending POST request to: {API_BASE_URL_1}")
-    print(f"Request data:\n{json.dumps(json_data_1, indent=2)}")
+                print(f"Sending GET request to: {API_BASE_URL_4}")
     
-    result = make_post_request(API_BASE_URL_1, json_data_1, headers)
+                result4 = make_get_request(API_BASE_URL_4, headers2)
     
-    print("\nResponse:")
-    print(json.dumps(result, indent=2))
-
-
-    print(f"Sending POST request to: {API_BASE_URL_3}")
-    print(f"Request data:\n{json.dumps(json_data_1, indent=2)}")
-    
-    result = make_post_request(API_BASE_URL_3, json_data_3, headers)
-    
-    print("\nResponse:")
-    print(json.dumps(result, indent=2))
-
-    print(f"Sending GET request to: {API_BASE_URL_4}")
-    
-    result = make_get_request(API_BASE_URL_4, headers2)
-    
-    print("\nResponse:")
-    print(json.dumps(result, indent=2))
+                print("\nResponse:")
+                print(json.dumps(result4, indent=2))
 
 

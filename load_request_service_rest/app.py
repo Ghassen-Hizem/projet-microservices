@@ -71,7 +71,7 @@ class FormClass(Resource):
     @ns_customer.doc(description='submitting the loan form by including the personal informations and the load amount')
     @ns_customer.expect(loan_form_model, validate=True)
     def post(self):
-        os.environ["amount"] = request.get_json()['amount']
+        os.environ["amount"] = str(request.get_json()['amount'])
         print("wiiiiw : ", os.environ.get("amount"))
         if validate_data_received(request.get_json()):
             if (verify_amount(request.get_json()['amount'])):
@@ -108,12 +108,12 @@ class LoanExecutionClass(Resource):
         customer_id = data.get("id")
         with grpc.insecure_channel('localhost:50051') as channel:
             stub = money_retrieval_pb2_grpc.MoneyRetrievalStub(channel)
-            response = stub.RetrieveMoney(money_retrieval_pb2.MoneyRetrievalRequest(amount=os.environ.get("amount")))
+            response = stub.RetrieveMoney(money_retrieval_pb2.MoneyRetrievalRequest(amount=int(os.environ.get("amount"))))
         print("Received response: success={}, retrieved_amount={}".format(response.success, response.retrieved_amount))
         print("executing loan !")
         a =send_loan_to_bank({
             "id": customer_id,
-            "amount": os.environ.get("amount")
+            "amount": int(os.environ.get("amount"))
         })
         response = a.data.replace(b"'", b'"')
         my_json = json.load(io.BytesIO(response)) 
@@ -218,13 +218,11 @@ def send_loan_to_bank(data: any):
         customer_id = data["id"]
         amount = data["amount"]
 
-        if not isinstance(customer_id, int) or not isinstance(amount, (int, float)):
-            return jsonify({"error": "Invalid input. 'id' must be an integer and 'amount' must be a number."}), 400
 
         # Define the GraphQL mutation
         graphql_mutation = {
             "query": """
-                mutation AddAmountToCustomer($id: Int!, $amount: Float!) {
+                mutation AddAmountToCustomer($id: String!, $amount: Float!) {
                     addAmountToCustomer(id: $id, amount: $amount) {
                         id
                         balance
@@ -479,4 +477,4 @@ def get_risk_category(score):
     ########################## UTILITY FUNCTIONS ################################################
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000,debug=True)
