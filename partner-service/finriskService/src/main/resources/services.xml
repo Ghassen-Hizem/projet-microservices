@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="CustomerFinancialProfileService" scope="application">
     <description>
-        SOAP service for retrieving customer financial profile activity for risk assessment
+        The SOAP service for retrieving customer financial profile activity for risk assessment
     </description>
     <messageReceivers>
         <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only"

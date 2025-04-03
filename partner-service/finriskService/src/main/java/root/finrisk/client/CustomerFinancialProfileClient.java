@@ -1,6 +1,5 @@
 package root.finrisk.client;
 
-import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.rpc.client.RPCServiceClient;
@@ -10,7 +9,6 @@ import root.finrisk.service.Transaction;
 import root.finrisk.service.SuspiciousActivity;
 
 import javax.xml.namespace.QName;
-import java.util.List;
 
 /**
  * Example client that demonstrates how to call the SOAP service
